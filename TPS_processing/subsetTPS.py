@@ -21,10 +21,9 @@ def outputData(data, output_file):
   out = ""
   i = 0
   for block in data:
-    out += "%sID=%s\n" % (block, i)
+    out += "%sID=%s\n\n" % (block, i)
     i+=1
 
-  out=out.rstrip()
   if output_file:
     o = open(output_file, "w")
     o.write(out)
