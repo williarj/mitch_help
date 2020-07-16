@@ -44,6 +44,7 @@ def searchFile(images, tps_file):
       #found end of block, check it
       #this will ignore the ID lines, which we will output manually.
       name = line.split("=")[1].rstrip()
+      name = name.split("\\")[-1]#gets rid of windows path names in files
       if name in images:#this is a keeper
         sys.stderr.write("Found data for image %s...\n"%(name))
         found_data.append(current_data)
