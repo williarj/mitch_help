@@ -1,6 +1,6 @@
 For detailed information on the arguments to the script you can type:
 
-python subsetTPD.py -h
+python subsetTPS.py -h
 
 Note, this script requires python 3 to function.
 
