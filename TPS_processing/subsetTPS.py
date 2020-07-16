@@ -39,16 +39,18 @@ def searchFile(images, tps_file):
       #found a new block, chuck the old one
       current_data = line
       continue
-    current_data += line
     if line.startswith("IMAGE"):
       #found end of block, check it
       #this will ignore the ID lines, which we will output manually.
       name = line.split("=")[1].rstrip()
       name = name.split("\\")[-1]#gets rid of windows path names in files
+      current_data += "IMAGE=%s\n" % name
       if name in images:#this is a keeper
         sys.stderr.write("Found data for image %s...\n"%(name))
         found_data.append(current_data)
         images.remove(name)
+    else:
+        current_data += line
   sys.stderr.write("File %s processing complete. Images remaining: %s\n" % (tps_file, len(images)))
   return images, found_data      
 
