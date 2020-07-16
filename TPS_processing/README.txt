@@ -20,6 +20,12 @@ Step by step how-to:
 	example: cd C:\Users\mitch\Documents\mitch_help_repo\TPS_processing
 4) run the program as above
 	example: python subsetTPS.py test_images.txt AMD_2_13_20.TPS -o my_output.txt
+5) If you need hep making the image list file you can do this:
+	1) Copy all the images you want to make a TPS for into a new empty folder
+	2) Open up git bash (right-click then "open git bash here") (this assumes gitbash is installed) (on a mac you can just upen up a terminal at this directory)
+	3) type the following to get a list of all .tif files into a file for use:
+		ls *.tif > my_image_list.txt
+	4) you can then use my_image_list.txt (or whatever you named it) as in the example above.
 
 Note: If you get a "No such file or directory" error you may have mispelled a file or foldername, or you need to add the full path to the input files. 
 For example:
