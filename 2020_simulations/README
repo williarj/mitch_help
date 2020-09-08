@@ -1,0 +1,34 @@
+This Rscript can be run either in interactive mode (e.g. RStudio) or on the command line.
+
+If you run it from RStudio you can simply edit the input parameters listed at the top of the file.
+
+If you run it on a command line you can pass the arguments in. To view the help run:
+
+    RScript guppy_simulation.R --help
+
+This describes all the inputs.
+
+====Quick start=====
+
+1. Runs with default parameters and creates the output CSV
+
+    RScript guppy_simulation.R ~/Docs/My_ExampleInput.csv my_out.csv
+
+2. Changes the probabilities of interacting with the 5 rivals. 
+   
+    RScript guppy_simulation.R ~/Docs/My_ExampleInput.csv my_out.csv --probs 1 1 1 1 2
+
+ The probability of interacting with the 5th rival (r=0.5) is double all the others. The probabilities correspond to rivals in order of relatedness. That is, the first one r=0.0 and the last r=0.5
+
+3. Changes the distribution to sample numbers of behaviors from
+
+    RScript guppy_simulation.R ~/Docs/My_ExampleInput.csv my_out.csv --dist rlnorm
+
+ This samples distributions from a lognormal distribution. Any valid R distribution that takes only a mean and sd can be provided. All treatments are sampled from the same distribution. If you want different distributions for different treatments just run them seperately. Make one input file for each treatment type, run this script with the appropriate --dist input, then you can combine all the output csv's afterwards. 
+
+4. Changes proabbilities and distribution
+
+   RScript guppy_simulation.R ~/Docs/My_ExampleInput.csv my_out.csv --probs 1 2 3 4 5 --dist rlnorm
+
+
+
