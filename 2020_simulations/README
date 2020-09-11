@@ -8,27 +8,54 @@ If you run it on a command line you can pass the arguments in. To view the help 
 
 This describes all the inputs.
 
+NOTE that the 'variance' input will depend on the distribution used, you should check what that input should be based on the R command you are providing. The default 'rnorm' uses a standard deviation to define the distribution, for example.
+
 ====Quick start=====
 
-1. Runs with default parameters and creates the output CSV
+1. Runs with mean behaviors = 5, variance = 1, and 10 focal males simulated output goes to my_out.csv
 
-    RScript guppy_simulation.R ~/Docs/My_ExampleInput.csv my_out.csv
+    RScript guppy_simulation.R 5 1 10  my_out.csv
 
 2. Changes the probabilities of interacting with the 5 rivals. 
    
-    RScript guppy_simulation.R ~/Docs/My_ExampleInput.csv my_out.csv --probs 1 1 1 1 2
+    RScript guppy_simulation.R 5 1 10 my_out.csv --probs 1 1 1 1 2
 
  The probability of interacting with the 5th rival (r=0.5) is double all the others. The probabilities correspond to rivals in order of relatedness. That is, the first one r=0.0 and the last r=0.5
 
 3. Changes the distribution to sample numbers of behaviors from
 
-    RScript guppy_simulation.R ~/Docs/My_ExampleInput.csv my_out.csv --dist rlnorm
+    RScript guppy_simulation.R 5 1 10 my_out.csv --dist rlnorm
 
  This samples distributions from a lognormal distribution. Any valid R distribution that takes only a mean and sd can be provided. All treatments are sampled from the same distribution. If you want different distributions for different treatments just run them seperately. Make one input file for each treatment type, run this script with the appropriate --dist input, then you can combine all the output csv's afterwards. 
 
-4. Changes proabbilities and distribution
+4. Changes proabilities and distribution
 
-   RScript guppy_simulation.R ~/Docs/My_ExampleInput.csv my_out.csv --probs 1 2 3 4 5 --dist rlnorm
+   RScript guppy_simulation.R 5 1 10 my_out.csv --probs 1 2 3 4 5 --dist rlnorm
 
+=====Running a bunch of replicates====
+The bash script run_sims.sh will show you how to run many replicates at once. 
 
+All the replicates are put in a folder called 'output' wherever you run the script.
+
+All you need to do it:
+    
+    bash run_sims.sh 2> errors.txt
+
+You can edit the parameters in that file to change what you run. 
+
+You should look at errors.txt EVERY TIME to make sure nothign funky happened with some runs. This file should list any errors that happen. Sometimes if you are in weird parameter space this file will indicate that.
+
+This will clean up the files for individual treatments and make one combined file called 'replicate_*.csv' where * is some number
+
+=======ERRORS========
+
+If you see this:
+ Error in rmultinom(1, size = behaviors, prob = probs) : 
+   invalid second argument 'size'
+ Calls: lapply -> FUN -> rmultinom
+ In addition: Warning message:
+ In rmultinom(1, size = behaviors, prob = probs) :
+   NAs introduced by coercion to integer range
+
+It means that a number was out of range for sampling (usually you have sampled a number of behaviors larger than the largest possible integer the computer can represent). You should check the parameters of your distribution to make sure they arent crazy.
 
