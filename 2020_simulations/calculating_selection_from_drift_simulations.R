@@ -9,7 +9,7 @@
 #si refers to the strength of selection from generation i-1 to generation i (e.g. s1 is the strength from generation 0 to generation 1)
 
 #simulate the random draws from a binomial
-d = data.frame(size=rep(c(10,100,1000,10000), 10), p0=0.08)
+d = data.frame(size=rep(c(10,100,1000,10000, 100000, 1000000, 1000000000), 1000), p0=0.08)
 
 for (i in c(1:8)){
   name = paste("p", i, sep="")
