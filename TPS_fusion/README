@@ -1,0 +1,27 @@
+This script takes a series of TPS and re-numbers IDs for entries into one big file.
+
+Use the -h or --help option to get detailed info on arguments and usage:
+
+     python tps_fuse.py --help
+
+Basic usage example:
+
+     python tps_fuse.py --tps example_TPS/1.TPS example_TPS/2.TPS
+
+This will create 2 files in the current directory: 
+     TPS_ID_map.csv - this is a CSV that lists the original filename and ID number for each entry and the newly assigned ID number 
+     fused.TPS      - this is the new TPS file combining the original two with new ID numbers
+
+You can change the names of the output files using parameters:
+
+     python tps_fuse.py --map my_ID_map.csv --new_tps my_new_tps.TPS --tps example_TPS/1.TPS example_TPS/2.TPS
+
+This will create the same files, but the names will be based on the passed in arguments. 
+
+Note if you want to quickly fuse all the TPS in a directory you can use the unix wildcards, for example:
+
+     python tps_fuse.py --tps example_TPS/*.TPS
+
+That will do the same thing as the 'basic usage' example above.
+
+
